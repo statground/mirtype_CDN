@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" role="img" aria-labelledby="title desc">
+  <title id="title">MirType</title>
+  <desc id="desc">MirType logo for typing practice and language learning</desc>
+  <defs>
+    <linearGradient id="mt-a" x1="16" x2="70" y1="10" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e"/>
+      <stop offset="0.52" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#d95c45"/>
+    </linearGradient>
+    <linearGradient id="mt-b" x1="88" x2="230" y1="20" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17212b"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="56" height="56" rx="14" fill="url(#mt-a)"/>
+  <path d="M21 47V25h7l8 11 8-11h7v22h-7V36l-6 8h-4l-6-8v11h-7Z" fill="#fff"/>
+  <path d="M18 56h36" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".76"/>
+  <path d="M78 47h8v-8h8v-6h-8v-8h-8v8h-8v6h8v8Z" fill="#bd7a12"/>
+  <text x="102" y="39" fill="url(#mt-b)" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="900" letter-spacing="0">MirType</text>
+  <text x="103" y="57" fill="#64707d" font-family="Inter, Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing=".2">TYPE PRACTICE + LANGUAGE LEARNING</text>
+</svg>
