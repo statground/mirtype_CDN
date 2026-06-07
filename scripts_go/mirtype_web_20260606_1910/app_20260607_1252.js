@@ -28,6 +28,7 @@
         game: "타자게임",
         keyboard: "키보드 보기"
       },
+      languageNames: { ko: "한국어", en: "영어", ru: "러시아어" },
       games: { rain: "산성비", invader: "침략자", mining: "자원 캐기" },
       gameHubKicker: "Game Select",
       gameHubTitle: "타자게임 선택",
@@ -55,9 +56,10 @@
       uiLanguageLabel: "내 언어",
       practiceLanguageLabel: "연습할 언어",
       languageSetupKicker: "Language Setup",
-      languageSetupTitle: "내 언어와 연습할 언어를 선택하세요",
-      languageSetupSummary: "화면 문구는 내 언어로 보고, 타자 연습은 원하는 언어의 단어와 키보드로 진행합니다.",
-      languageSetupDone: "이 설정으로 시작",
+      languageSetupTitle: "언어 설정",
+      languageSetupSummary: "화면 문구와 타자 연습 언어를 따로 선택합니다.",
+      languageSetupDone: "설정 저장",
+      closeSettings: "설정 닫기",
       hideKeyboard: "키보드 숨기기",
       showKeyboard: "키보드 보이기",
       points: "점"
@@ -85,6 +87,7 @@
         game: "Typing Games",
         keyboard: "Keyboard View"
       },
+      languageNames: { ko: "Korean", en: "English", ru: "Russian" },
       games: { rain: "Acid Rain", invader: "Invaders", mining: "Resource Mining" },
       gameHubKicker: "Game Select",
       gameHubTitle: "Choose a Typing Game",
@@ -112,9 +115,10 @@
       uiLanguageLabel: "My language",
       practiceLanguageLabel: "Practice language",
       languageSetupKicker: "Language Setup",
-      languageSetupTitle: "Choose your language and practice language",
-      languageSetupSummary: "Use your language for the interface, and choose the words and keyboard you want to practice.",
-      languageSetupDone: "Start with these settings",
+      languageSetupTitle: "Language Settings",
+      languageSetupSummary: "Choose the interface language and typing practice language separately.",
+      languageSetupDone: "Save Settings",
+      closeSettings: "Close settings",
       hideKeyboard: "Hide Keyboard",
       showKeyboard: "Show Keyboard",
       points: "pts"
@@ -142,6 +146,7 @@
         game: "Игры",
         keyboard: "Клавиатура"
       },
+      languageNames: { ko: "Корейский", en: "Английский", ru: "Русский" },
       games: { rain: "Кислотный дождь", invader: "Захватчики", mining: "Добыча ресурсов" },
       gameHubKicker: "Выбор игры",
       gameHubTitle: "Выберите игру",
@@ -169,9 +174,10 @@
       uiLanguageLabel: "Мой язык",
       practiceLanguageLabel: "Язык тренировки",
       languageSetupKicker: "Настройка языка",
-      languageSetupTitle: "Выберите свой язык и язык тренировки",
-      languageSetupSummary: "Интерфейс будет на вашем языке, а тренировка использует выбранные слова и раскладку.",
-      languageSetupDone: "Начать с этими настройками",
+      languageSetupTitle: "Настройки языка",
+      languageSetupSummary: "Выберите язык интерфейса и язык тренировки отдельно.",
+      languageSetupDone: "Сохранить",
+      closeSettings: "Закрыть настройки",
       hideKeyboard: "Скрыть клавиатуру",
       showKeyboard: "Показать клавиатуру",
       points: "очк."
@@ -317,7 +323,7 @@
     elements.restartButton = document.getElementById("restartButton");
     elements.modeTabs = document.querySelector(".mode-tabs");
     elements.toolbar = document.querySelector(".toolbar");
-    elements.languageSetupPanel = document.getElementById("languageSetupPanel");
+    elements.settingsPopover = document.getElementById("settingsPopover");
     elements.languageSetupKicker = document.getElementById("languageSetupKicker");
     elements.languageSetupTitle = document.getElementById("languageSetupTitle");
     elements.languageSetupSummary = document.getElementById("languageSetupSummary");
@@ -374,7 +380,6 @@
     bindButtons();
     syncLanguageButtons();
     applyLocale();
-    applyLanguageSetupVisibility();
     applyFontScale();
     applyKeyboardVisibility();
     renderKeyboard();
@@ -479,14 +484,26 @@
         elements.input.focus();
       });
     }
+    document.querySelectorAll("[data-settings-toggle]").forEach(function (button) {
+      button.addEventListener("click", function (event) {
+        event.stopPropagation();
+        setSettingsOpen(!elements.settingsPopover || elements.settingsPopover.hidden);
+      });
+    });
+    document.querySelectorAll("[data-settings-close]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        setSettingsOpen(false);
+        elements.input.focus();
+      });
+    });
     document.querySelectorAll("[data-ui-language]").forEach(function (button) {
       button.addEventListener("click", function () {
-        setUiLanguage(button.dataset.uiLanguage, !button.closest("#languageSetupPanel"));
+        setUiLanguage(button.dataset.uiLanguage, true);
       });
     });
     document.querySelectorAll("[data-practice-language]").forEach(function (button) {
       button.addEventListener("click", function () {
-        setPracticeLanguage(button.dataset.practiceLanguage, !button.closest("#languageSetupPanel"));
+        setPracticeLanguage(button.dataset.practiceLanguage, true);
       });
     });
     document.querySelectorAll("[data-language]").forEach(function (button) {
@@ -498,7 +515,7 @@
       elements.languageSetupDone.addEventListener("click", function () {
         state.preferencesSaved = true;
         savePreferences();
-        applyLanguageSetupVisibility();
+        setSettingsOpen(false);
         elements.input.focus();
       });
     }
@@ -506,7 +523,7 @@
       button.addEventListener("click", function () {
         state.preferencesSaved = true;
         savePreferences();
-        applyLanguageSetupVisibility();
+        setSettingsOpen(false);
         applyLocale();
         renderKeyboard();
         elements.input.focus();
@@ -533,6 +550,20 @@
 
     elements.restartButton.addEventListener("click", resetPractice);
     elements.clearHistoryButton.addEventListener("click", clearHistory);
+    document.addEventListener("click", function (event) {
+      if (!elements.settingsPopover || elements.settingsPopover.hidden) {
+        return;
+      }
+      if (elements.settingsPopover.contains(event.target) || event.target.closest("[data-settings-toggle]")) {
+        return;
+      }
+      setSettingsOpen(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        setSettingsOpen(false);
+      }
+    });
     elements.input.addEventListener("compositionstart", function () {
       state.composing = true;
       state.compositionBase = elements.input.value;
@@ -583,7 +614,6 @@
     if (state.uiLanguage === next && persist) {
       state.preferencesSaved = true;
       savePreferences();
-      applyLanguageSetupVisibility();
       return;
     }
     state.uiLanguage = next;
@@ -593,7 +623,6 @@
     if (persist) {
       state.preferencesSaved = true;
       savePreferences();
-      applyLanguageSetupVisibility();
     }
   }
 
@@ -602,7 +631,6 @@
     if (state.practiceLanguage === next && persist) {
       state.preferencesSaved = true;
       savePreferences();
-      applyLanguageSetupVisibility();
       return;
     }
     state.practiceLanguage = next;
@@ -612,8 +640,17 @@
     if (persist) {
       state.preferencesSaved = true;
       savePreferences();
-      applyLanguageSetupVisibility();
     }
+  }
+
+  function setSettingsOpen(open) {
+    if (!elements.settingsPopover) {
+      return;
+    }
+    elements.settingsPopover.hidden = !open;
+    document.querySelectorAll("[data-settings-toggle]").forEach(function (button) {
+      button.setAttribute("aria-expanded", String(open));
+    });
   }
 
   function normalizeLanguage(value, fallback) {
@@ -672,18 +709,18 @@
     }
   }
 
-  function applyLanguageSetupVisibility() {
-    if (elements.languageSetupPanel) {
-      elements.languageSetupPanel.hidden = state.preferencesSaved;
-    }
-  }
-
   function practiceLanguageKey() {
     return data[state.practiceLanguage] ? state.practiceLanguage : "ko";
   }
 
   function practiceData() {
     return data[practiceLanguageKey()] || data.ko;
+  }
+
+  function languageLabel(value) {
+    var key = normalizeLanguage(value, practiceLanguageKey());
+    var names = locale().languageNames || {};
+    return names[key] || (data[key] && data[key].label) || key;
   }
 
   function locale() {
@@ -703,9 +740,17 @@
     document.querySelectorAll("[data-language-control='practice']").forEach(function (node) {
       node.setAttribute("aria-label", copy.aria.practiceLanguage);
     });
-    if (elements.languageSetupPanel) {
-      elements.languageSetupPanel.setAttribute("aria-label", copy.aria.languageSetup);
+    if (elements.settingsPopover) {
+      elements.settingsPopover.setAttribute("aria-label", copy.aria.languageSetup);
     }
+    document.querySelectorAll("[data-settings-toggle]").forEach(function (button) {
+      button.setAttribute("aria-label", copy.aria.languageSetup);
+      button.title = copy.aria.languageSetup;
+    });
+    document.querySelectorAll("[data-settings-close]").forEach(function (button) {
+      button.setAttribute("aria-label", copy.closeSettings);
+      button.title = copy.closeSettings;
+    });
     elements.lessonControls.setAttribute("aria-label", copy.aria.lesson);
     if (elements.durationControls) {
       elements.durationControls.setAttribute("aria-label", copy.aria.duration);
@@ -949,11 +994,10 @@
 
   function getKeyboardTitle() {
     var copy = locale();
-    var languageData = practiceData();
     if (state.uiLanguage === state.practiceLanguage && copy.keyboardName) {
       return copy.keyboardName;
     }
-    return languageData.label + " " + copy.keyboardSuffix;
+    return languageLabel(practiceLanguageKey()) + " " + copy.keyboardSuffix;
   }
 
   function buildTarget() {
@@ -1339,12 +1383,12 @@
       "Русский": "ru"
     };
     if (data[value]) {
-      return data[value].label;
+      return languageLabel(value);
     }
     if (legacyLanguages[value]) {
-      return data[legacyLanguages[value]].label;
+      return languageLabel(legacyLanguages[value]);
     }
-    return value || practiceData().label;
+    return value || languageLabel(practiceLanguageKey());
   }
 
   function appendHistoryCell(item, text, strong) {

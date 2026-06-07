@@ -168,42 +168,69 @@ button {
   gap: 0.15rem;
 }
 
-.language-setup {
+.settings-popover {
   box-sizing: border-box;
-  width: min(64rem, 100%);
-  margin: 1rem auto 0.35rem;
+  position: absolute;
+  top: calc(100% + 0.55rem);
+  right: max(1rem, calc((100vw - 72rem) / 2 + 1rem));
+  z-index: 50;
+  width: min(34rem, calc(100vw - 2rem));
+}
+
+.settings-popover[hidden] {
+  display: none !important;
+}
+
+.settings-popover-panel {
   display: grid;
   gap: 1rem;
   padding: 1.25rem;
   border: 1px solid var(--app-line);
   border-radius: 1.5rem;
   background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+  box-shadow: 0 22px 60px rgba(31, 41, 55, 0.16);
+  backdrop-filter: blur(16px);
 }
 
-.language-setup[hidden] {
-  display: none !important;
+.settings-popover-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.language-setup-copy {
-  display: grid;
-  gap: 0.35rem;
-  text-align: center;
-}
-
-.language-setup h2 {
+.settings-popover h2 {
   margin: 0;
   color: var(--app-text);
-  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  font-size: 1.25rem;
   font-weight: 900;
   line-height: 1.25;
 }
 
-.language-setup p {
+.settings-popover p {
   margin: 0;
   color: var(--app-textLight);
   font-weight: 800;
   line-height: 1.6;
+}
+
+.settings-popover-close {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eef0f4;
+  border-radius: 999px;
+  color: var(--app-textLight);
+  background: #ffffff;
+}
+
+.settings-popover-close:hover,
+.settings-popover-close:focus-visible {
+  color: #ffffff;
+  background: var(--app-primary);
+  outline: none;
 }
 
 .language-setup-grid {
@@ -1429,8 +1456,13 @@ button {
     padding-top: 1rem;
   }
 
-  .language-setup {
-    margin-top: 0.75rem;
+  .settings-popover {
+    top: calc(100% + 0.35rem);
+    right: 0.5rem;
+    width: calc(100vw - 1rem);
+  }
+
+  .settings-popover-panel {
     padding: 1rem;
     border-radius: 1.25rem;
   }
