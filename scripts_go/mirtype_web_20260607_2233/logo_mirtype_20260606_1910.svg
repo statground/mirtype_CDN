@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 72" role="img" aria-labelledby="title desc">
+  <title id="title">MirType</title>
+  <desc id="desc">MirType logo with a keyboard emoji for typing practice and language learning</desc>
+  <defs>
+    <linearGradient id="mt-bg" x1="8" x2="68" y1="8" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f766e"/>
+      <stop offset="0.55" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#d95c45"/>
+    </linearGradient>
+    <linearGradient id="mt-word" x1="84" x2="226" y1="19" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17212b"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="56" height="56" rx="16" fill="url(#mt-bg)"/>
+  <text x="36" y="47" text-anchor="middle" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif" font-size="31">⌨️</text>
+  <text x="80" y="39" fill="url(#mt-word)" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="900" letter-spacing="0">MirType</text>
+  <text x="82" y="57" fill="#64707d" font-family="Inter, Arial, sans-serif" font-size="10.5" font-weight="800" letter-spacing="0">Typing + Language</text>
+</svg>
