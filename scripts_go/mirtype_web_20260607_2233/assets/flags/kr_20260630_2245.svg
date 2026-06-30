@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="KR">
+  <defs>
+    <clipPath id="c"><circle cx="32" cy="32" r="32"/></clipPath>
+    <g id="solid">
+      <rect x="-5.4" y="-4.5" width="10.8" height="1.55" rx="0.75"/>
+      <rect x="-5.4" y="-0.75" width="10.8" height="1.55" rx="0.75"/>
+      <rect x="-5.4" y="3" width="10.8" height="1.55" rx="0.75"/>
+    </g>
+    <g id="broken">
+      <rect x="-5.4" y="-4.5" width="4.25" height="1.55" rx="0.75"/>
+      <rect x="1.15" y="-4.5" width="4.25" height="1.55" rx="0.75"/>
+      <rect x="-5.4" y="-0.75" width="4.25" height="1.55" rx="0.75"/>
+      <rect x="1.15" y="-0.75" width="4.25" height="1.55" rx="0.75"/>
+      <rect x="-5.4" y="3" width="4.25" height="1.55" rx="0.75"/>
+      <rect x="1.15" y="3" width="4.25" height="1.55" rx="0.75"/>
+    </g>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="64" height="64" fill="#fff"/>
+    <g fill="#111827">
+      <use href="#solid" transform="translate(18.7 18.7) rotate(-34)"/>
+      <g transform="translate(45.3 18.7) rotate(34)">
+        <rect x="-5.4" y="-4.5" width="10.8" height="1.55" rx="0.75"/>
+        <rect x="-5.4" y="-0.75" width="4.25" height="1.55" rx="0.75"/>
+        <rect x="1.15" y="-0.75" width="4.25" height="1.55" rx="0.75"/>
+        <rect x="-5.4" y="3" width="10.8" height="1.55" rx="0.75"/>
+      </g>
+      <g transform="translate(18.7 45.3) rotate(34)">
+        <rect x="-5.4" y="-4.5" width="4.25" height="1.55" rx="0.75"/>
+        <rect x="1.15" y="-4.5" width="4.25" height="1.55" rx="0.75"/>
+        <rect x="-5.4" y="-0.75" width="10.8" height="1.55" rx="0.75"/>
+        <rect x="-5.4" y="3" width="4.25" height="1.55" rx="0.75"/>
+        <rect x="1.15" y="3" width="4.25" height="1.55" rx="0.75"/>
+      </g>
+      <use href="#broken" transform="translate(45.3 45.3) rotate(-34)"/>
+    </g>
+    <circle cx="32" cy="32" r="11.4" fill="#0047a0"/>
+    <path d="M20.6 32a11.4 11.4 0 0 1 22.8 0H20.6z" fill="#cd2e3a"/>
+    <circle cx="26.3" cy="32" r="5.7" fill="#0047a0"/>
+    <circle cx="37.7" cy="32" r="5.7" fill="#cd2e3a"/>
+  </g>
+</svg>
