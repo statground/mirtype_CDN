@@ -1,0 +1,293 @@
+{
+  "schema": "statground.cdn.asset-manifest.v1",
+  "service": "mirtype_web",
+  "repository": "statground/mirtype_CDN",
+  "source_commit": "6a64ceda8b5126450d0205d810af7cea09422273",
+  "asset_root": "scripts_go/mirtype_web_20260607_2233/",
+  "generated_at": "2026-07-11T05:35:20Z",
+  "digest_algorithm": "sha256",
+  "route_budgets": [
+    {
+      "route": "/",
+      "max_javascript_bytes": 600000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/course/",
+      "max_javascript_bytes": 800000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/practice/*",
+      "max_javascript_bytes": 800000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/keyboard/",
+      "max_javascript_bytes": 800000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/books/*",
+      "max_javascript_bytes": 630000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/lectures/*",
+      "max_javascript_bytes": 650000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/rankings/",
+      "max_javascript_bytes": 620000,
+      "max_css_bytes": 140000
+    },
+    {
+      "route": "/admin/",
+      "max_javascript_bytes": 1750000,
+      "max_css_bytes": 140000
+    }
+  ],
+  "assets": [
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/logo_mirtype_20260606_1910.svg",
+      "digest": "sha256:9ed7d269c254162f5520a354abbf32f5c9ac660a4e41722c91e8101eb2e895bb",
+      "bytes": 1238,
+      "mime": "image/svg+xml",
+      "routes": ["*"],
+      "fault_domain": "shell-brand"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/common/style/tailwind_20260711_1220.css",
+      "digest": "sha256:5a2f07ee8ecb5f96b8b01091a363714faacd945195736b48fcff1089d136240f",
+      "bytes": 19242,
+      "mime": "text/css",
+      "routes": ["*"],
+      "fault_domain": "shell-style"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/common/style/common_20260704_1108.css",
+      "digest": "sha256:f84146bc0c93d25f9f04e2e0fe4ad15b7325f21d3739c25549fde24f1ea517ba",
+      "bytes": 115221,
+      "mime": "text/css",
+      "routes": ["*"],
+      "fault_domain": "shell-style"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/common/vendor/lucide_0.468.0_20260711_1434.min.js",
+      "digest": "sha256:3411692820cb8d47543f69496aa25fd603a358f4498046f41c508a5a3342210e",
+      "bytes": 357796,
+      "mime": "application/javascript",
+      "routes": ["*"],
+      "fault_domain": "shell-icons"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/common/content/content_api_20260620_2358.js",
+      "digest": "sha256:94e865be1389f0cb63a459171e94328db23b94178e2cfdc6e63348bceed94251",
+      "bytes": 765,
+      "mime": "application/javascript",
+      "routes": ["*"],
+      "fault_domain": "learning-content"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/common/common/shell_20260704_1013.js",
+      "digest": "sha256:871ca448601d257190f8baa0c93b9da16447f33a21120053a693d2df7f07a777",
+      "bytes": 228806,
+      "mime": "application/javascript",
+      "routes": ["*"],
+      "fault_domain": "shell-runtime"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/course/content_loader_20260627_1910.js",
+      "digest": "sha256:016835fd1ddc7f2e97a3cd4ea7788615c8146e774535cfb40f42391475ebf7d1",
+      "bytes": 1046,
+      "mime": "application/javascript",
+      "routes": ["/course/"],
+      "fault_domain": "learning-content"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/practice/content_loader_20260620_2358.js",
+      "digest": "sha256:4a0ccb58cd8cf4023be156c924dc34bc3a5c01040e9a1f00de53fefef90c9063",
+      "bytes": 618,
+      "mime": "application/javascript",
+      "routes": ["/practice/*", "/keyboard/"],
+      "fault_domain": "learning-content"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/practice/app_20260704_1136.js",
+      "digest": "sha256:807b9595e02465fb2cbea0572728686a2922e696a735d5635b01ab1d61ee8a4e",
+      "bytes": 198582,
+      "mime": "application/javascript",
+      "routes": ["/course/", "/practice/*", "/keyboard/"],
+      "fault_domain": "learning-runtime"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/books/books_20260711_1310.js",
+      "digest": "sha256:cf81f6132ebea430c7fe4dc32bf7626fb31c0282486f288d683c96817bee0db2",
+      "bytes": 30110,
+      "mime": "application/javascript",
+      "routes": ["/books/*"],
+      "fault_domain": "books-catalog"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/lectures/lectures_20260711_1310.js",
+      "digest": "sha256:f83d56d35257fb796281fa40a123c692100038bbf5166964fc5c5c0feb47f62b",
+      "bytes": 42751,
+      "mime": "application/javascript",
+      "routes": ["/lectures/*"],
+      "fault_domain": "lectures-catalog"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/rankings/rankings_20260704_1108.js",
+      "digest": "sha256:f799d30078e879e78b6b9395e926023c88bb04e2dcaf6d036a991647285037ab",
+      "bytes": 14152,
+      "mime": "application/javascript",
+      "routes": ["/rankings/"],
+      "fault_domain": "rankings"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/common/vendor/echarts_6.0.0_20260711_1434.min.js",
+      "digest": "sha256:baa8dfe7e1d9336b98e8986ba7e20ea15e7cdbea1ef42a59d59478632fa45a1d",
+      "bytes": 1117939,
+      "mime": "application/javascript",
+      "routes": ["/admin/"],
+      "fault_domain": "admin-analytics"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/scripts3/admin/admin_dashboard_20260702_2100.js",
+      "digest": "sha256:f4f275fb73bd35ca8c3c70377e204994faece66e250ac385a1afa2b1fca858ea",
+      "bytes": 8422,
+      "mime": "application/javascript",
+      "routes": ["/admin/"],
+      "fault_domain": "admin-analytics"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/cn_20260630_2245.svg",
+      "digest": "sha256:dcf8d94d5591ccbd427bf9986be0a7571ad527cd9f8c7dd2b6da9a3f1e3ef138",
+      "bytes": 546,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/de_20260630_2245.svg",
+      "digest": "sha256:c10146a7ff397feaf45fc382752805dfa137ee25f9f86133058a92cd7e06f565",
+      "bytes": 362,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/es_20260630_2245.svg",
+      "digest": "sha256:d3d9dd9446b6d3bdb158cd5e7843b9ab891c41ace534eab34157196a1c09dbc3",
+      "bytes": 298,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/fr_20260630_2245.svg",
+      "digest": "sha256:dc3830ad61c6d43177144899abae6d6e1183a7f1fe72a53e37a2e5c76353b19c",
+      "bytes": 362,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/id_20260630_2245.svg",
+      "digest": "sha256:d0eee67d42e2962f6ba42adefa266a824013207d8dfc8a71ae61ea18e53cf069",
+      "bytes": 295,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/in_20260630_2245.svg",
+      "digest": "sha256:667f6513404a7ad01473c72235f8e3139bdd8483aef1547375c6e68c55fcf38a",
+      "bytes": 485,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/it_20260630_2245.svg",
+      "digest": "sha256:37f8f5e47e1f6ed13455717d70d54b63fa4c755ee956cc16373d7c1e9c46adbb",
+      "bytes": 362,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/jp_20260630_2245.svg",
+      "digest": "sha256:4e2b1e3e0d901be3d97c1bcaa9a6dd6d7a6e986097b6497b4f382a513b524263",
+      "bytes": 290,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/kr_20260630_2245.svg",
+      "digest": "sha256:3baefb6f5982b6fcf12eded80cc30cd1751d8d47dc4812c9f09b61d2aa0947df",
+      "bytes": 2104,
+      "mime": "image/svg+xml",
+      "routes": ["*", "/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/pt_20260630_2245.svg",
+      "digest": "sha256:15bed531e4bafe95efba4fd5e6f7cac8acd52005cbb0264fad88214a2f8324e7",
+      "bytes": 387,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/ru_20260630_2245.svg",
+      "digest": "sha256:adb5eb2349ce4a45c19d1aa16418a7f92f00ace40242b6dd37e17990dbef3d75",
+      "bytes": 377,
+      "mime": "image/svg+xml",
+      "routes": ["*", "/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/sa_20260630_2245.svg",
+      "digest": "sha256:5d4168a0cfe3c1704b787bd4b981e953dee68f798caf6b4bdd01d1e7543240da",
+      "bytes": 372,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/th_20260630_2245.svg",
+      "digest": "sha256:3521ebc73417141a2d449562a0543638a29bebe8efada32e1dd1ac2e7031bfa1",
+      "bytes": 347,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/us_20260704_1013.svg",
+      "digest": "sha256:05b555aadb5eff4d4f9fe378d98f56effaad67aaebdd56b54084640403dfdcb2",
+      "bytes": 2736,
+      "mime": "image/svg+xml",
+      "routes": ["*", "/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/va_20260630_2245.svg",
+      "digest": "sha256:c6b60d865e09a9719d36a7e50748deeb228f5b24e25d21f4c50d711398fdc8c8",
+      "bytes": 349,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    },
+    {
+      "path": "scripts_go/mirtype_web_20260607_2233/assets/flags/vn_20260630_2245.svg",
+      "digest": "sha256:f7d9a4ebdbd3e1d1bf5539bbe1a8949ffd97e064aedb5810b63fadf9b76efb5e",
+      "bytes": 341,
+      "mime": "image/svg+xml",
+      "routes": ["/books/*", "/lectures/*"],
+      "fault_domain": "language-flags"
+    }
+  ]
+}
