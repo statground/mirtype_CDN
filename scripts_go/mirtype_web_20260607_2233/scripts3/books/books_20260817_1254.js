@@ -52,6 +52,8 @@
       sourceFallback: "도서 정보",
       detailFallback: "언어 학습 교재",
       isbn: "ISBN",
+      isbnArea: "ISBN 등록 지역",
+      isbnAreaHelp: "ISBN 등록그룹의 국가 또는 언어권입니다. 책의 출판국이나 본문 언어를 뜻하지 않습니다.",
       pubdate: "출판일",
       publisher: "출판사",
       author: "저자",
@@ -93,6 +95,8 @@
       sourceFallback: "Book information",
       detailFallback: "Language Learning Book",
       isbn: "ISBN",
+      isbnArea: "ISBN registration area",
+      isbnAreaHelp: "The ISBN registration group identifies a country or language area, not the book's publication country or language.",
       pubdate: "Published",
       publisher: "Publisher",
       author: "Author",
@@ -134,6 +138,8 @@
       sourceFallback: "Информация о книге",
       detailFallback: "Книга для изучения языка",
       isbn: "ISBN",
+      isbnArea: "Регион регистрации ISBN",
+      isbnAreaHelp: "Группа регистрации ISBN обозначает страну или языковой регион, а не страну издания или язык книги.",
       pubdate: "Дата издания",
       publisher: "Издательство",
       author: "Автор",
@@ -182,6 +188,24 @@
     recent: { ko: "최신 출간순", en: "Newest", ru: "Новые" },
     title: { ko: "제목순", en: "Title", ru: "По названию" }
   };
+
+  // Narrow, verified groups from the International ISBN Agency range message.
+  // A registration group can be a language area rather than a publication country.
+  var isbnRegistrationGroups = [
+    { prefix: "97899993", names: { ko: "모리셔스", en: "Mauritius", ru: "Маврикий" } },
+    { prefix: "978620", names: { ko: "모리셔스", en: "Mauritius", ru: "Маврикий" } },
+    { prefix: "97889", names: { ko: "대한민국", en: "South Korea", ru: "Южная Корея" } },
+    { prefix: "97893", names: { ko: "인도", en: "India", ru: "Индия" } },
+    { prefix: "97911", names: { ko: "대한민국", en: "South Korea", ru: "Южная Корея" } },
+    { prefix: "9780", names: { ko: "영어권", en: "English-language area", ru: "Англоязычный регион" } },
+    { prefix: "9781", names: { ko: "영어권", en: "English-language area", ru: "Англоязычный регион" } },
+    { prefix: "9782", names: { ko: "프랑스어권", en: "French-language area", ru: "Франкоязычный регион" } },
+    { prefix: "9783", names: { ko: "독일어권", en: "German-language area", ru: "Немецкоязычный регион" } },
+    { prefix: "9784", names: { ko: "일본", en: "Japan", ru: "Япония" } },
+    { prefix: "9785", names: { ko: "구 소련권", en: "Former Soviet Union", ru: "Страны бывшего СССР" } },
+    { prefix: "9787", names: { ko: "중국", en: "China", ru: "Китай" } },
+    { prefix: "9798", names: { ko: "미국", en: "United States", ru: "США" } }
+  ];
 
   if (!root) return;
 
@@ -619,15 +643,36 @@
   function renderFacts(item) {
     var facts = el("dl", "book-facts");
     addFact(facts, copy().isbn, item.ISBN);
+    var area = isbnRegistrationArea(item.ISBN);
+    if (area) addFact(facts, copy().isbnArea, area, copy().isbnAreaHelp);
     addFact(facts, copy().pubdate, item.Pubdate);
     addFact(facts, copy().publisher, item.Publisher);
     addFact(facts, copy().author, item.Author);
     return facts;
   }
 
-  function addFact(parent, label, value) {
+  function isbnRegistrationArea(value) {
+    var digits = String(value || "").replace(/[\s-]/g, "");
+    if (!/^97[89][0-9]{10}$/.test(digits)) return "";
+    var sum = 0;
+    for (var i = 0; i < digits.length; i++) {
+      sum += Number(digits.charAt(i)) * (i % 2 ? 3 : 1);
+    }
+    if (sum % 10 !== 0) return "";
+    for (var j = 0; j < isbnRegistrationGroups.length; j++) {
+      var group = isbnRegistrationGroups[j];
+      if (digits.indexOf(group.prefix) === 0) {
+        var name = group.names[currentUILanguage()];
+        return name + " (" + group.prefix.slice(0, 3) + "-" + group.prefix.slice(3) + ")";
+      }
+    }
+    return "";
+  }
+
+  function addFact(parent, label, value, help) {
     if (!value) return;
     var row = el("div", "");
+    if (help) row.title = help;
     row.appendChild(el("dt", "", label));
     row.appendChild(el("dd", "", value));
     parent.appendChild(row);
