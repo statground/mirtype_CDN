@@ -631,7 +631,7 @@
     var body = el("div", "book-detail-body");
     body.appendChild(el("p", "book-source", [languageName(item.TargetLanguageCode, item.TargetLanguageName), purposeName(item.TargetPurposeCode, item.TargetPurposeName)].filter(Boolean).join(" · ") || copy().sourceFallback));
     body.appendChild(el("h2", "", item.Title || copy().detailFallback));
-    body.appendChild(el("p", "book-meta", item.AuthorPublisherLine || copy().sourceFallback));
+    body.appendChild(el("p", "book-meta", bookAuthorDisplayText(item.AuthorPublisherLine) || copy().sourceFallback));
     if (item.Description) body.appendChild(el("p", "book-description", item.Description));
     body.appendChild(renderFacts(item));
     body.appendChild(renderMarketplaces(item));
@@ -647,8 +647,14 @@
     if (area) addFact(facts, copy().isbnArea, area, copy().isbnAreaHelp);
     addFact(facts, copy().pubdate, item.Pubdate);
     addFact(facts, copy().publisher, item.Publisher);
-    addFact(facts, copy().author, item.Author);
+    addFact(facts, copy().author, bookAuthorDisplayText(item.Author));
     return facts;
+  }
+
+  function bookAuthorDisplayText(value) {
+    var text = String(value || "");
+    if (text.indexOf("^") < 0) return text;
+    return text.split("^").map(function (part) { return part.trim(); }).filter(Boolean).join(", ");
   }
 
   function isbnRegistrationArea(value) {
@@ -742,7 +748,7 @@
     var body = el("span", "book-card-body");
     if (item.TargetPurposeName || item.TargetPurposeCode) body.appendChild(el("em", "", purposeName(item.TargetPurposeCode, item.TargetPurposeName)));
     body.appendChild(el("strong", "", item.Title || copy().detailFallback));
-    body.appendChild(el("span", "", item.AuthorPublisherLine || copy().sourceFallback));
+    body.appendChild(el("span", "", bookAuthorDisplayText(item.AuthorPublisherLine) || copy().sourceFallback));
     if (item.Pubdate) body.appendChild(el("span", "book-card-date", item.Pubdate));
     if (item.Description) body.appendChild(el("small", "", item.Description));
     return body;
